@@ -1,3 +1,4 @@
+/* I love tuna |>(). */
 
 #ifndef TUNA_UTILS_H_INCLUDED
 #define TUNA_UTILS_H_INCLUDED
