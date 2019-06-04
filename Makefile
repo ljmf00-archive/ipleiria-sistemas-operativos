@@ -18,7 +18,7 @@ PROGRAM=prog
 
 PROGRAM_OPT=args
 
-PROGRAM_OBJS=main.o $(PROGRAM_OPT).o
+PROGRAM_OBJS=main.o $(PROGRAM_OPT).o utils.o file_utils.o
 
 .PHONY: clean all docs indent debug
 
@@ -37,11 +37,14 @@ $(PROGRAM): $(PROGRAM_OBJS)
 	$(CC) -o $@ $(PROGRAM_OBJS) $(LIBS) $(LDFLAGS)
 
 # Dependencies
-main.o: main.c $(PROGRAM_OPT).h
+main.o: main.c $(PROGRAM_OPT).h file_utils.h utils.h
 $(PROGRAM_OPT).o: $(PROGRAM_OPT).c $(PROGRAM_OPT).h
 
 $(PROGRAM_OPT).o: $(PROGRAM_OPT).c $(PROGRAM_OPT).h
 	$(CC) -ggdb -std=c11 -pedantic -c $<
+
+file_utils.o: file_utils.c file_utils.h
+utils.o: utils.c utils.h
 
 .c.o:
 	$(CC) $(CFLAGS) -c $<
